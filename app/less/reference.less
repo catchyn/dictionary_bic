@@ -1,0 +1,66 @@
+@import "variables";
+
+body {
+  font-family: "RobotoRegular", sans-serif;
+  font-size: 16px;
+}
+
+.reference-wrapper {
+  display: block;
+  width: 100%;
+  height: 500px;
+  background-color: #c2d4ea;
+  padding: 10px 10px 15px;
+  h2 {
+    margin: 10px;
+    display: block;
+    text-align: center;
+  }
+  .ref-row-wrapper {
+    border-top: @border;
+    border-right: @border;
+    border-left: @border;
+    border-radius: 4px;
+  }
+  .ref-add-wrapper {
+    display: block;
+    width: 100%;
+    border-top: @border;
+    border-right: @border;
+    border-left: @border;
+    border-radius: 4px;
+    background-color: @gridBgc;
+    padding: 10px 10px 10px 10px;
+    .alone {
+      border: @border;
+    }
+    .ref-input {
+      padding: 8px;
+      input {
+        border-radius: 4px;
+        width: 100%;
+        padding: 5px;
+      }
+    }
+    .ref-btn-panel {
+      padding: 8px;
+    }
+  }
+}
+
+.ref-row {
+  display: block;
+  width: 100%;
+  height: 50px;
+  background-color: @gridBgc;
+  border-bottom: @border;
+  padding: 5px;
+  &.last-row {
+    border-bottom: @border;
+    border-radius: 0 0 4px 4px;
+  }
+  &.first-row {
+    border-radius: 4px 4px 0 0;
+  }
+}
+

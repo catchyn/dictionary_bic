@@ -1,0 +1,61 @@
+body {
+  font-family: "RobotoRegular", sans-serif;
+  font-size: 16px;
+}
+.reference-wrapper {
+  display: block;
+  width: 100%;
+  height: 500px;
+  background-color: #c2d4ea;
+  padding: 10px 10px 15px;
+}
+.reference-wrapper h2 {
+  margin: 10px;
+  display: block;
+  text-align: center;
+}
+.reference-wrapper .ref-row-wrapper {
+  border-top: 1px solid #bac5f4;
+  border-right: 1px solid #bac5f4;
+  border-left: 1px solid #bac5f4;
+  border-radius: 4px;
+}
+.reference-wrapper .ref-add-wrapper {
+  display: block;
+  width: 100%;
+  border-top: 1px solid #bac5f4;
+  border-right: 1px solid #bac5f4;
+  border-left: 1px solid #bac5f4;
+  border-radius: 4px;
+  background-color: #e5e9f9;
+  padding: 10px 10px 10px 10px;
+}
+.reference-wrapper .ref-add-wrapper .alone {
+  border: 1px solid #bac5f4;
+}
+.reference-wrapper .ref-add-wrapper .ref-input {
+  padding: 8px;
+}
+.reference-wrapper .ref-add-wrapper .ref-input input {
+  border-radius: 4px;
+  width: 100%;
+  padding: 5px;
+}
+.reference-wrapper .ref-add-wrapper .ref-btn-panel {
+  padding: 8px;
+}
+.ref-row {
+  display: block;
+  width: 100%;
+  height: 50px;
+  background-color: #e5e9f9;
+  border-bottom: 1px solid #bac5f4;
+  padding: 5px;
+}
+.ref-row.last-row {
+  border-bottom: 1px solid #bac5f4;
+  border-radius: 0 0 4px 4px;
+}
+.ref-row.first-row {
+  border-radius: 4px 4px 0 0;
+}

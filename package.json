@@ -1,0 +1,48 @@
+{
+  "scripts": {
+    "install": "npm install -g json-server",
+    "postinstall": "json-server --watch db/db.json"
+  },
+  "dependencies": {
+    "es6-promise": "^4.2.4",
+    "isomorphic-fetch": "^2.2.1",
+    "json-server": "^0.12.2",
+    "react": "^16.3.2",
+    "react-dom": "^16.3.2"
+  },
+  "devDependencies": {
+    "babel-core": "^6.26.3",
+    "babel-loader": "^7.1.4",
+    "babel-preset-env": "^1.7.0",
+    "babel-preset-react": "^6.24.1",
+    "browser-sync": "^2.24.4",
+    "del": "^3.0.0",
+    "gulp": "^3.9.1",
+    "gulp-autoprefixer": "^5.0.0",
+    "gulp-babel": "^7.0.1",
+    "gulp-cli": "^2.0.1",
+    "gulp-concat": "^2.6.1",
+    "gulp-concat-css": "^3.1.0",
+    "gulp-csscomb": "^3.0.8",
+    "gulp-group-css-media-queries": "^1.2.2",
+    "gulp-json-srv": "^1.2.0",
+    "gulp-less": "^3.5.0",
+    "gulp-sourcemaps": "^2.6.4",
+    "gulp-util": "^3.0.8",
+    "webpack": "^4.8.3"
+  },
+  "name": "reference",
+  "version": "1.0.0",
+  "main": "gulpfile.js",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/catchyn/dictionary_bic.git"
+  },
+  "author": "alikhachev",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/catchyn/dictionary_bic/issues"
+  },
+  "homepage": "https://github.com/catchyn/dictionary_bic#readme",
+  "description": ""
+}
