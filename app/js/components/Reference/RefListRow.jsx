@@ -4,16 +4,6 @@ import RefRow from './RefRow.jsx'
 class RefListRow extends Component {
     constructor(props){
         super(props);
-
-        this.state = {
-            isOpenRowButton: false
-        };
-
-        this.openRowButton = () => {
-            if (this.state.isOpenRowButton === true) {
-
-            }
-        }
     }
 
     render() {
@@ -23,7 +13,8 @@ class RefListRow extends Component {
                     classLast={i === this.props.listItems.length - 1 ? 'last-row' : ''}
                     classFirst={i === 0 ? 'first-row' : ''} listItems={this.props.listItems}
                     editData={this.props.editData} onDeleteRow={this.props.onDeleteRow}
-                    onOpenRowBtn={this.openRowButton} rowFullView={this.props.rowFullView}/>
+                    onOpenRowBtn={this.openRowButton} rowFullView={this.props.rowFullView}
+                    isCloseRowElem={this.props.isCloseRowElem} openRowElem={this.props.openRowElem}/>
             )
         });
 

@@ -5,8 +5,7 @@ class RefRow extends Component {
     constructor(props){
         super(props);
 
-        this.state = {
-            isOpen: false,
+        this.fakeState = {
             isOpenBtn: false,
             isEdit: false
         };
@@ -27,23 +26,30 @@ class RefRow extends Component {
             e.stopPropagation();
             e.preventDefault();
             if (e.target.type !== "button") {
-                this.setState((prevState, props) => ({
-                    isOpenBtn: !prevState.isOpenBtn
-                }));
-                this.props.onOpenRowBtn(this.state.isOpenBtn);
+                this.fakeState.isOpenBtn = !this.fakeState.isOpenBtn;
+                this.forceUpdate();
             }
+            this.props.openRowElem();
         };
 
         this.onAddOpenChange = () => {
-            this.setState((prevState, props) => ({
-                isEdit: !prevState.isEdit
-            }));
+            this.fakeState.isEdit = !this.fakeState.isEdit;
+            this.forceUpdate();
+        };
+
+        this.closeRowElem = () => {
+            this.fakeState.isOpenBtn = false;
+            this.fakeState.isEdit = false;
+            this.props.openRowElem();
         };
     }
 
     render() {
         let bankInfo = this.props.item;
 
+        if (this.props.isCloseRowElem) {
+            this.closeRowElem();
+        }
 
         let btnPanelDOM = (
             <div className="row" onClick={this.onOpenBtn}>
@@ -58,7 +64,7 @@ class RefRow extends Component {
             </div>
         );
 
-        let f = () => this.state.isOpenBtn ? btnPanelDOM : null;
+        let f = () => this.fakeState.isOpenBtn ? btnPanelDOM : null;
         let btnPanel = f();
 
         let editRowDOM = (
@@ -92,7 +98,7 @@ class RefRow extends Component {
             </div>
         );
 
-        if (this.state.isEdit === false ) {
+        if (this.fakeState.isEdit === false) {
             return rowDOM
         } else {
             return editRowDOM

@@ -6,8 +6,8 @@ class RefPanel extends Component {
 
         this.state = {
             isSizeFull: false,
-            isSortOrder: undefined,
-            isSortByAlph: undefined
+            isSortOrder: true,
+            isSortByAlph: true
         };
 
         this.clickAdd = (e) => {
@@ -20,6 +20,32 @@ class RefPanel extends Component {
             this.setState((prevState, props) => ({isSizeFull: !prevState.isSizeFull}));
             this.props.onClickResize();
         };
+
+        this.onSortOrder = (e) => {
+            e.stopPropagation();
+            e.preventDefault();
+            if (e.currentTarget.name === "orderBtn") {
+                this.setState((prevState, props) => ({isSortOrder: !prevState.isSortOrder}));
+                if (this.state.isSortOrder) {
+                    this.props.onSort({type:"bic", order:"ASC"});
+                } else {
+                    this.props.onSort({type:"bic", order:"DESC"});
+                }
+            } else {
+                this.setState((prevState, props) => ({isSortByAlph: !prevState.isSortByAlph}));
+                if (this.state.isSortByAlph) {
+                    this.props.onSort({type:"name", order:"ASC"});
+                } else {
+                    this.props.onSort({type:"name", order:"DESC"});
+                }
+            }
+        };
+
+        this.onChangeFilter = (e) => {
+            e.stopPropagation();
+            e.preventDefault();
+            this.props.onFilter({type: e.target.name, text: e.target.value});
+        }
     }
 
     render() {
@@ -39,16 +65,18 @@ class RefPanel extends Component {
 
         return (
             <div className="ref-panel-wrapper">
-                <button type="button" class="ref-menu-btn btn btn-default" aria-label="Left Align">
+                <button type="button" name="orderBtn" class="ref-menu-btn btn btn-default" aria-label="Left Align"
+                    onClick={this.onSortOrder}>
                     {this.state.isSortOrder ? sortOrderIconDOM : sortOrderAltIconDOM}
                 </button>
-                <div className="ref-bic-input ref-input">
+                <div className="ref-bic-input ref-input" onChange={this.onChangeFilter}>
                     <input type="text" name="bic" required placeholder={"БИК"}/>
                 </div>
-                <button type="button" class="ref-menu-btn btn btn-default" aria-label="Left Align">
+                <button type="button" name="byAlphBtn" class="ref-menu-btn btn btn-default" aria-label="Left Align"
+                    onClick={this.onSortOrder}>
                     {this.state.isSortByAlph ? sortByAlphIconDOM : sortByAlphAltIconDOM}
                 </button>
-                <div className="ref-name-input ref-input">
+                <div className="ref-name-input ref-input" onChange={this.onChangeFilter}>
                     <input type="text" name="name" required placeholder={"Название"}/>
                 </div>
                 <button type="button" class="ref-menu-btn btn btn-default" aria-label="Left Align"

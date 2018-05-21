@@ -65,7 +65,7 @@ class RefAdd extends Component {
                         </div>
                         <div className="col-md-4">
                             <div className="ref-input bic">
-                                <input type="text" name="bic" value={this.state.bic} required
+                                <input type="text" name="bic" value={this.state.bic} pattern={"[0-9]{9}"} required
                                        onChange={this.inputBicChange} placeholder={"БИК"}/>
                             </div>
                         </div>
@@ -87,7 +87,7 @@ class RefAdd extends Component {
                     <div className="row">
                         <div className="col-md-6">
                             <div className="ref-btn-panel btn-group">
-                                <input className={"btn btn-success"} type="submit" value="Добавить"/>
+                                <input className={"btn btn-success"} type="submit" value={this.props.item ? 'Сохранить' : 'Добавить'}/>
                                 <input className={"btn btn-primary"} onClick={this.clickCancel}
                                        type="button" value="Отмена"/>
                             </div>

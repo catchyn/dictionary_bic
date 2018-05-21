@@ -18,6 +18,11 @@ blockquote {
   min-height: 350px;
   padding: 10px 10px 15px;
 }
+.reference-wrapper .ref-body {
+  background-color: #e5e9f9;
+  padding: 1px 5px;
+  border-radius: 4px;
+}
 .reference-wrapper h2 {
   margin: 10px;
   display: block;
@@ -37,9 +42,7 @@ blockquote {
 .reference-wrapper .ref-add-wrapper {
   display: block;
   width: 100%;
-  border-top: 1px solid #bac5f4;
-  border-right: 1px solid #bac5f4;
-  border-left: 1px solid #bac5f4;
+  border: 1px solid #bac5f4;
   border-radius: 4px;
   background-color: #e5e9f9;
   padding: 10px 10px 10px 10px;
@@ -93,14 +96,14 @@ blockquote {
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
-  width: 156px;
+  width: 150px;
   padding-left: 5px;
 }
 .reference-wrapper .ref-row .ref-row-text .name {
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
-  flex-grow: 1;
+  flex: 1;
   padding-left: 5px;
 }
 .reference-wrapper .ref-row .ref-row-text.vertical-flex {
