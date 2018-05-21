@@ -2,11 +2,20 @@ body {
   font-family: "RobotoRegular", sans-serif;
   font-size: 16px;
 }
+input[type="text"] {
+  border-radius: 4px;
+}
+blockquote {
+  padding: 0px 5px;
+  margin: 3px 0 0 6px;
+  font-size: 14.5px;
+  border-left: 5px solid #c2d4ea;
+}
 .reference-wrapper {
   display: block;
   width: 100%;
-  height: 500px;
   background-color: #c2d4ea;
+  min-height: 350px;
   padding: 10px 10px 15px;
 }
 .reference-wrapper h2 {
@@ -19,6 +28,11 @@ body {
   border-right: 1px solid #bac5f4;
   border-left: 1px solid #bac5f4;
   border-radius: 4px;
+}
+.reference-wrapper .ref-rowList-scroll {
+  overflow-y: auto;
+  overflow-x: hidden;
+  max-height: 350px;
 }
 .reference-wrapper .ref-add-wrapper {
   display: block;
@@ -36,26 +50,80 @@ body {
 .reference-wrapper .ref-add-wrapper .ref-input {
   padding: 8px;
 }
-.reference-wrapper .ref-add-wrapper .ref-input input {
-  border-radius: 4px;
+.reference-wrapper .ref-add-wrapper .ref-input input[type="text"] {
   width: 100%;
   padding: 5px;
 }
 .reference-wrapper .ref-add-wrapper .ref-btn-panel {
   padding: 8px;
 }
-.ref-row {
+.reference-wrapper .ref-rowList-wrapper {
+  height: 350px;
+}
+.reference-wrapper .ref-row {
   display: block;
   width: 100%;
-  height: 50px;
+  height: auto;
   background-color: #e5e9f9;
   border-bottom: 1px solid #bac5f4;
   padding: 5px;
 }
-.ref-row.last-row {
+.reference-wrapper .ref-row.last-row {
   border-bottom: 1px solid #bac5f4;
   border-radius: 0 0 4px 4px;
 }
-.ref-row.first-row {
+.reference-wrapper .ref-row.first-row {
   border-radius: 4px 4px 0 0;
+}
+.reference-wrapper .ref-row:hover {
+  background-color: #dce1f7;
+}
+.reference-wrapper .ref-row:active {
+  background-color: #c8d1f7;
+}
+.reference-wrapper .ref-row .ref-btn-panel {
+  margin-top: 4px;
+}
+.reference-wrapper .ref-row .ref-row-text {
+  display: flex;
+  flex-wrap: nowrap;
+  justify-content: flex-start;
+}
+.reference-wrapper .ref-row .ref-row-text .bic {
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  width: 156px;
+  padding-left: 5px;
+}
+.reference-wrapper .ref-row .ref-row-text .name {
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  flex-grow: 1;
+  padding-left: 5px;
+}
+.reference-wrapper .ref-row .ref-row-text.vertical-flex {
+  flex-direction: column;
+}
+.reference-wrapper .ref-panel-wrapper {
+  display: flex;
+  flex-wrap: wrap-reverse;
+  justify-content: flex-start;
+  margin: 4px 0 1px 0;
+}
+.reference-wrapper .ref-panel-wrapper .ref-menu-btn {
+  flex-basis: 30px;
+}
+.reference-wrapper .ref-panel-wrapper .ref-input > input[type="text"] {
+  height: 34px;
+}
+.reference-wrapper .ref-panel-wrapper .ref-input > input[type="text"][name="bic"] {
+  width: 120px;
+}
+.reference-wrapper .ref-panel-wrapper .ref-input > input[type="text"][name="name"] {
+  width: 100%;
+}
+.reference-wrapper .ref-panel-wrapper .ref-name-input.ref-input {
+  flex-grow: 1;
 }

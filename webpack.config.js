@@ -3,8 +3,8 @@ var path = require('path');
 module.exports = {
     devtool: 'source-map',
     mode: 'production',
-    //entry: ['babel-polyfill', './app/js/app.jsx'],
-    entry: ['./app/js/app.jsx'],
+    entry: ['babel-polyfill', './app/js/app.jsx'],
+    //entry: ['./app/js/app.jsx'],
     module: {
         rules: [{
             test: /.jsx?$/,

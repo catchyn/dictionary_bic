@@ -1,7 +1,7 @@
 import React, {Component} from 'react'
-import RefRow from './RefRow.jsx'
 import RefAdd from './RefAdd.jsx'
 import RefPanel from './RefPanel.jsx'
+import RefListRow from './RefListRow.jsx'
 
 class Reference extends Component {
     constructor(props) {
@@ -11,11 +11,12 @@ class Reference extends Component {
             error: null,
             isLoaded: false,
             addPanelOpen: false,
+            rowFullView: false,
             items: []
         };
 
         this.getData = () => {
-            fetch("../db/db.json", {
+            fetch("http://localhost:3000/bankref", {
                 method: "GET"
             })
                 .then(res => res.json())
@@ -24,7 +25,7 @@ class Reference extends Component {
                         console.log(result);
                         this.setState({
                             isLoaded: true,
-                            items: result.bankRef
+                            items: result
                         });
                     },
                     (error) => {
@@ -36,10 +37,35 @@ class Reference extends Component {
                 )
         };
 
+        this.deleteData = (obj) => {
+            if (obj.id === undefined) {
+                return;
+            }
+            fetch(`http://localhost:3000/bankref/${obj.id}`, {
+                method: "DELETE"
+            })
+                .then(res => res.json())
+                .then(
+                    (result) => {
+                        console.log(result);
+                        this.getData();
+                    },
+                    (error) => {
+                        alert('Не удалось удалить элемент списка!')
+                    }
+                )
+        };
+
         this.setData = (obj) => {
+            var url = "http://localhost:3000/bankref/";
+            var method = 'POST';
+            if (obj.id) {
+                url += obj.id;
+                method = 'PUT';
+            }
             (async () => {
-                const rawResponse = await fetch('../db/db.json', {
-                    method: 'POST',
+                const rawResponse = await fetch(url, {
+                    method: method,
                     headers: {
                         'Accept': 'application/json',
                         'Content-Type': 'application/json'
@@ -47,20 +73,17 @@ class Reference extends Component {
                     body: JSON.stringify(obj)
                 });
                 const content = await rawResponse.json();
-                console.log(content);
+                this.getData();
             })();
         };
 
         this.onAddOpenChange = () => {
-            this.setState((prevState, props) => ({
-                addPanelOpen: !prevState.addPanelOpen
-            }));
+            this.setState((prevState, props) => ({addPanelOpen: !prevState.addPanelOpen}));
         };
 
-        this.onAddItem = () => {
-
+        this.onClickResize = () => {
+            this.setState((prevState, props) => ({rowFullView: !prevState.rowFullView}));
         }
-
     }
 
     componentDidMount() {
@@ -68,17 +91,10 @@ class Reference extends Component {
     }
 
     render() {
-        const listItems = this.state.items.map((item, i) => {
-            return (
-                <RefRow data={item}
-                         classLast={i === this.state.items.length - 1 ? 'last-row' : ''}
-                         classFirst={i === 0 ? 'first-row' : ''}/>
-            );
-        });
 
         let refAdd = null;
         if (this.state.addPanelOpen === true) {
-            refAdd = <RefAdd listItems={listItems} onOpenChange={this.onAddOpenChange}
+            refAdd = <RefAdd listItems={this.state.items} onOpenChange={this.onAddOpenChange}
                 onAddItem={this.setData}/>
         }
 
@@ -88,13 +104,11 @@ class Reference extends Component {
                     <div className="col-md-12">
                         <div className="reference-wrapper">
                             <h2>Справочник банков</h2>
-                            <div className="ref-panel-wrapper">
-                            <RefPanel onOpenChange={this.onAddOpenChange} panelOpen={this.state.addPanelOpen}/>
-                            </div>
+                            <RefPanel onOpenChange={this.onAddOpenChange} panelOpen={this.state.addPanelOpen}
+                                      onClickResize={this.onClickResize}/>
                             {refAdd}
-                            <div className="ref-row-wrapper">
-                                {listItems}
-                            </div>
+                            <RefListRow listItems={this.state.items} editData={this.setData}
+                                        onDeleteRow={this.deleteData} rowFullView={this.state.rowFullView}/>
                         </div>
                     </div>
                 </div>

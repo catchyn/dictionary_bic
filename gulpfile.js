@@ -32,9 +32,7 @@ var path = {
     }
 };
 
-var server = jsonServer.create({
-    port:3010
-});
+var server = jsonServer.create();
 gulp.task("JSONstart", function(){
     return gulp.src("db/db.json")
         .pipe(server.pipe());
@@ -55,17 +53,17 @@ gulp.task('less', function () {
     return gulp.src(path.src.less)
         .pipe(less())
         .pipe(gulp.dest('app/css'))
-        .pipe(browserSync.reload({stream: true}));
+        // .pipe(browserSync.reload({stream: true}));
 });
 
-gulp.task('browser-sync', function(){
-    browserSync({
-        server: {
-            baseDir: 'build'
-        },
-        notify: false
-    })
-});
+// gulp.task('browser-sync', function(){
+//     browserSync({
+//         server: {
+//             baseDir: 'build'
+//         },
+//         notify: false
+//     })
+// });
 
 gulp.task('clean', function() {
     return del.sync('build');
@@ -77,10 +75,10 @@ gulp.task('buildCss', function() {
         .pipe(gulp.dest(path.build.css));
 });
 
-gulp.task('watch', ['JSONstart','less', 'webpack', 'browser-sync'], function(){
+gulp.task('watch', ['JSONstart','less', 'webpack'], function(){
     gulp.watch(path.watch.less, ['less', 'buildCss']);
-    gulp.watch(path.watch.html, [browserSync.reload]);
-    gulp.watch(path.watch.js, ['webpack', browserSync.reload]);
+    // gulp.watch(path.watch.html, [browserSync.reload]);
+    gulp.watch(path.watch.js, ['webpack']);
 });
 
 gulp.task('build', ['JSONstart','clean', 'less', 'webpack'], function() {

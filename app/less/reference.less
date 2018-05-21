@@ -5,11 +5,22 @@ body {
   font-size: 16px;
 }
 
+input[type="text"] {
+  border-radius: 4px;
+}
+
+blockquote {
+  padding: 0px 5px;
+  margin: 3px 0 0 6px;
+  font-size: 14.5px;
+  border-left: 5px solid #c2d4ea;
+}
+
 .reference-wrapper {
   display: block;
   width: 100%;
-  height: 500px;
   background-color: #c2d4ea;
+  min-height:350px;
   padding: 10px 10px 15px;
   h2 {
     margin: 10px;
@@ -21,6 +32,11 @@ body {
     border-right: @border;
     border-left: @border;
     border-radius: 4px;
+  }
+  .ref-rowList-scroll {
+    overflow-y: auto;
+    overflow-x: hidden;
+    max-height: 350px;
   }
   .ref-add-wrapper {
     display: block;
@@ -36,8 +52,7 @@ body {
     }
     .ref-input {
       padding: 8px;
-      input {
-        border-radius: 4px;
+      input[type="text"] {
         width: 100%;
         padding: 5px;
       }
@@ -46,21 +61,87 @@ body {
       padding: 8px;
     }
   }
+  .ref-rowList-wrapper {
+    height:350px;
+  }
+
+  .ref-row {
+    display: block;
+    width: 100%;
+    height: auto;
+    background-color: @gridBgc;
+    border-bottom: @border;
+    padding: 5px;
+    &.last-row {
+      border-bottom: @border;
+      border-radius: 0 0 4px 4px;
+    }
+    &.first-row {
+      border-radius: 4px 4px 0 0;
+    }
+    &:hover {
+      background-color: @gridBgcHover
+    }
+    &:active {
+      background-color: @gridBgcActive
+    }
+    .ref-btn-panel {
+      margin-top: 4px;
+    }
+    .ref-row-text {
+      display: flex;
+      flex-wrap: nowrap;
+      justify-content: flex-start;
+      .bic {
+        white-space: nowrap;;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        width: 156px;
+        padding-left: 5px;
+      }
+      .name {
+        white-space: nowrap;;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        flex-grow: 1;
+        padding-left: 5px;
+      }
+      &.vertical-flex {
+        flex-direction: column;
+      }
+    }
+  }
+
+  .ref-panel-wrapper {
+    display: flex;
+    flex-wrap: wrap-reverse;
+    justify-content: flex-start;
+    margin: 4px 0 1px 0;
+
+    .ref-menu-btn {
+      flex-basis: 30px;
+    }
+    .ref-input {
+      &>input[type="text"] {
+        height: 34px;
+
+        &[name="bic"] {
+          width: 120px;
+        }
+
+        &[name="name"] {
+          width: 100%;
+        }
+      }
+    }
+
+    .ref-name-input.ref-input {
+      flex-grow: 1;
+    }
+
+    .ref-btn-panel {
+    }
+  }
 }
 
-.ref-row {
-  display: block;
-  width: 100%;
-  height: 50px;
-  background-color: @gridBgc;
-  border-bottom: @border;
-  padding: 5px;
-  &.last-row {
-    border-bottom: @border;
-    border-radius: 0 0 4px 4px;
-  }
-  &.first-row {
-    border-radius: 4px 4px 0 0;
-  }
-}
 
